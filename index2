@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+        <meta charset="UTF-8" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+        <title>Login and Registration Form with HTML5 and CSS3</title>
+                <link rel="stylesheet" type="text/css" href="main.css" />
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+		
+    </head>
+
+<body>
+<div class="wrapper">
+<img src="landing-page/img.png" id="bg" alt="">
+<div class="header">
+<div class="container">
+<div class="logo">
+<img src="landing-page/lgoorg.png">
+</div>
+<div class="mailsection">
+<div id="frmContact">
+  <div class="inner">
+    <h2>Something cool is coming.</h2>
+    <p>Enter your email, and we'll put you on our invite list.</p>
+   
+ <input type="text" name="userEmail" id="userEmail" class="demoInputBox first" placeholder=""> 
+ <input type="hidden" name="adminemail" id="adminemail" class="demoInputBox first" value="admin@kuplr.com"> 
+<button name="submit" class="btnAction second" onclick="sendContact();">Go</button>
+
+<span id="userEmail-info" class="info"></span>
+<div id="mail-status"></div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="footer">
+<div class="container">
+<div class="leftcontent">
+<p><span style="font-weight:800;">What is </span><span class="kuplrcss">Kuplr?</span> A social network for couples to connect and build lasting friendships, with like-minded couples. </p>
+</div>
+<div class="rightcontent">
+<ul>
+<li class="follow">Follow us</li>
+<li><a target="_blank" href="https://twitter.com/Kuplr_"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+<li><a target="_blank" href="https://www.pinterest.com/kuplrllc/"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+<li><a target="_blank" href="https://plus.google.com/102807198518599354563"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+<li><a target="_blank" href="https://www.instagram.com/kuplr/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+</ul>
+<p id="footerp">Kuplr © 2018</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<script>
+
+function sendContact() {
+	
+	var valid;
+	
+	valid = validateContact();
+	//vname =  $("#userName").val();
+		vemail= $("#userEmail").val();
+		
+		if(valid) {
+		jQuery.ajax({
+		url: "contact_mail.php",
+		data:'userEmail='+vemail+'&adminemail='+$("#adminemail").val(),
+		type: "POST",
+		success:function(data){
+		$("#mail-status").html(data);
+		$("#userEmail").val('');
+		},
+	
+		error:function (){}
+		});
+				}
+}
+
+function validateContact() {
+	var valid = true;	
+	$(".demoInputBox").css('background-color','');
+	$(".info").html('');
+	
+if(!$("#userEmail").val()) {
+		$("#userEmail-info").html("Please enter Email ");
+		$("#userEmail").css('border','1px solid red');
+		valid = false;
+	}
+	if(!$("#userEmail").val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
+		$("#userEmail-info").html("Please use vaild email");
+		$("#userEmail").css('border','1px solid red');
+		valid = false;
+	}
+		
+	return valid;
+}
+</script>
+
+
+
+<script id="wappalyzer" src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script></body>
+</html>
